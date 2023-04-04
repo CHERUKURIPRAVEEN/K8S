@@ -1,4 +1,4 @@
-## Minikube
+## Minikube Installation
 
 ### On Windows
 #### Prerequisites
