@@ -39,5 +39,5 @@ kubectl config set-context $(kubectl config current-context) --namespace=*namesp
 
 
 References:
-**[Configurations](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/)**
-**[Access Cluster](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)**
+- **[Configurations](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/)**
+- **[Access Cluster](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)**
