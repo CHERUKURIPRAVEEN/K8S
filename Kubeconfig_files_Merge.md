@@ -24,11 +24,11 @@ kubectl config get-clusters
 ```
 #### To see the list of contexts and the current context
 ```
-kubectl config get-cntexts
+kubectl config get-contexts
 ```
 #### To see the current contexts
 ```
-kubectl config current-cntext
+kubectl config current-context
 ```
 #### Change namespace
 ```
