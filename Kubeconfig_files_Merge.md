@@ -1,5 +1,4 @@
-## Kubeconfig Files Merge
-#### Kubeconfig
+### Kubeconfig
 > **kubeconfig** is the file used by kubectl to retrive the required configuration to access your **Kubernetes Cluster** or to Communicate with the *API server* of that cluster.
 
 > **kubeconfig** files are used to organize information about **clusters**, **users**, **namespaces** and **authentication mechanisums**
@@ -37,6 +36,21 @@ or
 kubectl config set-context $(kubectl config current-context) --namespace=*namespace*
 ```
 
+### Merging two config files
+#### Make a copy of existing config file
+```
+cp ~/.kube/config ~/.kube/config.bak
+```
+#### Merge the two config files togather into a new config file as save it as a new file
+```
+KUBECONFIG=~/.kube/config:*path_to_new_config_file* kubectl config viw --flatten > /tmp/config
+
+mv /tmp/config ~/.kube/config
+```
+#### Delete backup after testing the merged config file (Optional)
+```
+rm ~/.kube/config.bak
+```
 
 References:
 - **[Configurations](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/)**
