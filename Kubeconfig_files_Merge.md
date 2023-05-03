@@ -11,4 +11,4 @@
 > export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config
 
 #### Command line flag
-> kubectl config --kubeconfig=*<configfilepath>* --minify 
+> kubectl config --kubeconfig=*configfilepath* --minify 
