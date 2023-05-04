@@ -1,4 +1,9 @@
 ### EKS CLUSTER CREATION ###
-eksctl create cluster --name EKS-CLUSTER-DEV-01 --region us-east-1 --vpc-public-subnets subnet-0185c5edc6cd69153,subnet-0726155ae71e61ed0 --vpc-private-subnets subnet-007dc1027563b1232,subnet-0da098638e8a2df76  --without-nodegroup
+```eksctl create cluster --name EKS-CLUSTER-DEV-01 --region us-east-1 --vpc-public-subnets (subnet-id),(subnet-id) --vpc-private-subnets (subnet-id),(subnet-id)  --without-nodegroup
+```
+```
 eksctl utils associate-iam-oidc-provider --region us-east-1 --cluster EKS-CLUSTER-DEV-01 --approve
-eksctl create nodegroup --cluster=EKS-CLUSTER-DEV-01 --region=us-east-1 --name=EKS-CLUSTER-DEV-01-ng-public1 --node-type=t3.medium --nodes=1 --nodes-min=1 --nodes-max=2 --node-volume-size=20 --ssh-access --ssh-public-key=EKS --managed --asg-access --external-dns-access --full-ecr-access --appmesh-access --alb-ingress-access 
+````
+```
+eksctl create nodegroup --cluster=EKS-CLUSTER-DEV-01 --region=us-east-1 --name=EKS-CLUSTER-DEV-01-ng-public1 --node-type=t3.medium --nodes=1 --nodes-min=1 --nodes-max=2 --node-volume-size=20 --ssh-access --ssh-public-key=EKS --managed --asg-access --external-dns-access --full-ecr-access --appmesh-access --alb-ingress-access
+```
