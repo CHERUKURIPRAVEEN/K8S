@@ -1,5 +1,6 @@
 ### EKS CLUSTER CREATION ###
-```eksctl create cluster --name EKS-CLUSTER-DEV-01 --region us-east-1 --vpc-public-subnets (subnet-id),(subnet-id) --vpc-private-subnets (subnet-id),(subnet-id)  --without-nodegroup
+```
+eksctl create cluster --name EKS-CLUSTER-DEV-01 --region us-east-1 --vpc-public-subnets (subnet-id),(subnet-id) --vpc-private-subnets (subnet-id),(subnet-id)  --without-nodegroup
 ```
 ```
 eksctl utils associate-iam-oidc-provider --region us-east-1 --cluster EKS-CLUSTER-DEV-01 --approve
