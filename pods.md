@@ -30,9 +30,8 @@ kubectl get po <pod name> -o yaml | grep phase
 ### Lifecycle of a Container
 * Kubernetes also tracks the state of each container inside a pod. 
 * Once the scheduler assign a pod to a node, the kubelet start creating containers for that pod using container runtime. 
-* You can also use <kubectl describe pod name_of_pod> to check the state of the containers. 
-
+* You can also use `kubectl describe pod name_of_pod` to check the state of the containers. 
 * There are three possible container states. 
 * **Waiting:** while stilling pulling the container image from a Container Registry, or applying secrets
 * **Running:** when container is running without any issues.
-* **Terminated** when container ran to completion or failed for some reason. use <kubectl describe > to see the reason, an exit code, and the start and finish time of the containers period of execution.
+* **Terminated** when container ran to completion or failed for some reason. use `kubectl describe` to see the reason, an exit code, and the start and finish time of the containers period of execution.
