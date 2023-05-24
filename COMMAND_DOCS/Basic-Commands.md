@@ -17,8 +17,7 @@ kubectl version --short
 ```
 * To know the `Component status`, but not every get the status due to `RBAC` restrictions 
 ```
-* kubectl get `componentstatus`
-or
+kubectl get componentstatus
 kubectl get cs
 ```
 * To know the all `resources, shortnames, apiversions, namspaced/not, kind`
@@ -28,7 +27,7 @@ kubectl api-resources
 ## Pods releted information
 * List pods in `default/current context`
 ```
-kubectl get `pods`
+kubectl get pods
 ```
 * list all `pods in a cluster`
 ```
@@ -67,7 +66,6 @@ kubectl delete pod <pod-name> --force --grace-period=0
 kubectl delete pod <pod-name> --wait=false
 kubectl delete po --all
 ```
-
 * Edit pod
 ```
 kubectl edit pod <pod-name>
