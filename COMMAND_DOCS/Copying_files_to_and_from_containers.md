@@ -4,7 +4,7 @@
 
 * From local to pod
 ```
-kubectl cp  index.html ngnix:/usr/share/nginx/html/index.html
+kubectl cp index.html ngnix:/usr/share/nginx/html/index.html
 ```
 * From pod to local
 ```
