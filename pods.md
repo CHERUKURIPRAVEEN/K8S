@@ -35,3 +35,11 @@ kubectl get po <pod name> -o yaml | grep phase
 * **Waiting:** while stilling pulling the container image from a Container Registry, or applying secrets
 * **Running:** when container is running without any issues.
 * **Terminated** when container ran to completion or failed for some reason. use `kubectl describe` to see the reason, an exit code, and the start and finish time of the containers period of execution.
+
+### Container Restart Policy
+> * The restart policy applies to all containers in the pod.
+> * The possible values **Always** **OnFailure** and **Never**. 
+> * The default value is **Always** 
+> * Mention the restart policies in podspec
+> * When container in a pod exit, The Kubelet restart them with an exponential backoff delay *10 seconds 20 seconds 40 seconds* That is capped at five minutes.
+> * Once a container has executed for 10 minutes without any problems. The Kubelet reset the restart backoff timer for the container.
