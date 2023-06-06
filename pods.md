@@ -1,17 +1,17 @@
 ## Pods
-> * Basic scheduling unit in kubernetes. Pods are often ephemeral.
-> * Kubernetes doesn't run containers directly, Instead it wraps one or more containers into a higher level structure called a pod.
-> * It is also smallest deployable unit that can be created, schedule and managed on a kubernetes cluster.
-> * Each pod is assigned a **unique IP address** within the cluster.
-> * Pods can hold ***multiple containers*** as well, but you should limit yourself when possible. Beacuse pods are scaled up and down as a unit, all containers in a pod must scale togather, regardless of their individual needs. This leads wasted resource.
+* Basic scheduling unit in kubernetes. Pods are often ephemeral.
+* Kubernetes doesn't run containers directly, Instead it wraps one or more containers into a higher level structure called a pod.
+* It is also smallest deployable unit that can be created, schedule and managed on a kubernetes cluster.
+* Each pod is assigned a **unique IP address** within the cluster.
+* Pods can hold ***multiple containers*** as well, but you should limit yourself when possible. Beacuse pods are scaled up and down as a unit, all containers in a pod must scale togather, regardless of their individual needs. This leads wasted resource.
 
-> * a port can have one more tightly related containers that we always run togather on the same worker node and in the same linux namespace. 
-> * Each pod is like a separate logical mechine with its own IP, hostname, processes and so on, Running a single application, It is just a sandbox to run container in.
-> * All the container is a pod will apper to be running on the same logical machine, whereas containers in the other pods, even if they are running on the same worker node, will appear to be running on a different one. 
+* a port can have one more tightly related containers that we always run togather on the same worker node and in the same linux namespace. 
+* Each pod is like a separate logical mechine with its own IP, hostname, processes and so on, Running a single application, It is just a sandbox to run container in.
+* All the container is a pod will apper to be running on the same logical machine, whereas containers in the other pods, even if they are running on the same worker node, will appear to be running on a different one. 
 
-> * Any container in the same pod will share this same storage volumes and network resources and communicating using localhost.
-> *  Kubernetes uses **YAML** to describe the desired state of the containers in a pod. This is also called a *pod spec*. These objects are passed to the kubelet to the API Server. 
-> * Pods are the unit of replication in Kubernetes. If your application become too poplar and a single pod instance can't carry the load. kubernetes can be configured to deploy new replicas of your pod to the cluster as necessary.
+* Any container in the same pod will share this same storage volumes and network resources and communicating using localhost.
+*  Kubernetes uses **YAML** to describe the desired state of the containers in a pod. This is also called a *pod spec*. These objects are passed to the kubelet to the API Server. 
+* Pods are the unit of replication in Kubernetes. If your application become too poplar and a single pod instance can't carry the load. kubernetes can be configured to deploy new replicas of your pod to the cluster as necessary.
 
 
 ### Lifecycle of a pod
@@ -37,9 +37,9 @@ kubectl get po <pod name> -o yaml | grep phase
 * **Terminated** when container ran to completion or failed for some reason. use `kubectl describe` to see the reason, an exit code, and the start and finish time of the containers period of execution.
 
 ### Container Restart Policy
-> * The restart policy applies to all containers in the pod.
-> * The possible values **Always** **OnFailure** and **Never**. 
-> * The default value is **Always** 
-> * Mention the restart policies in podspec
-> * When container in a pod exit, The Kubelet restart them with an exponential backoff delay *10 seconds 20 seconds 40 seconds* That is capped at five minutes.
-> * Once a container has executed for 10 minutes without any problems. The Kubelet reset the restart backoff timer for the container.
+* The restart policy applies to all containers in the pod.
+* The possible values **Always** **OnFailure** and **Never**. 
+* The default value is **Always** 
+* Mention the restart policies in podspec
+* When container in a pod exit, The Kubelet restart them with an exponential backoff delay *10 seconds 20 seconds 40 seconds* That is capped at five minutes.
+* Once a container has executed for 10 minutes without any problems. The Kubelet reset the restart backoff timer for the container.
