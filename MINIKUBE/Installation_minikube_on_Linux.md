@@ -17,7 +17,7 @@ sudo install minikube-linux-amd64 /usr/local/bin/minikube
 ```
 2. Docker CLI
 ```sh
-curl www.get.docker.com | bash
+curl https://get.docker.com | bash
 ```
 3. Kubectl
 ```sh
