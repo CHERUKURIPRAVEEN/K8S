@@ -8,4 +8,3 @@
   - Certified Kubernetes Distribustions
   - Components of Kubernetes Cluster
 - Kubernetes Architechere CNI CNE DockerShim
-  - 
