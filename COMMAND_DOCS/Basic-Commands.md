@@ -9,7 +9,6 @@ kubectl cluster-info
 kubectl get nodes
 kubectl get nodes -o wide
 ```
-
 * To know the `kubectl` version
 ```
 kubectl version
@@ -24,7 +23,7 @@ kubectl get cs
 ```
 kubectl api-resources
 ```
-## Pods releted information
+## Pods releted commands
 * List pods in `default/current context`
 ```
 kubectl get pods
@@ -73,6 +72,19 @@ kubectl edit pod <pod-name>
 * Create pod with limits
 ```
 kubectl run <podname> --image=<image-name> --env="<key=value>" --labels="<key=velue>" --requests='cpu=100m, Memory=256Mi' --limits='cpu=200m, Memory=516Mi'
+```
+* Create pods from manifests
+```
+kubectl create -f <filename/URL>
+kubectl replace -f <filename/URL>
+kubectl delte -f <filename/URL>
+kubectl get -f <filename/URL>
+kubectl apply -f <filename/URL>
+kubectl apply -f <directory>
+
+kubectl create -f pod-defination.yml
+kubectl apply -f pod-defination.yml
+kubectl delte -f pod-defination.yml --force --grace-limit=0
 ```
 * List the `service in default/current context `
 ```
