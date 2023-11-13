@@ -43,3 +43,5 @@ kubectl get po <pod name> -o yaml | grep phase
 * Mention the restart policies in podspec
 * When container in a pod exit, The Kubelet restart them with an exponential backoff delay *10 seconds 20 seconds 40 seconds* That is capped at five minutes.
 * Once a container has executed for 10 minutes without any problems. The Kubelet reset the restart backoff timer for the container.
+
+* Test line
