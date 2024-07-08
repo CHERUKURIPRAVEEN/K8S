@@ -1,8 +1,8 @@
-### Container Orchestration:
+## Container Orchestration:
 * Container Orchestration automates redeployment, management, scaling and networking of containers across the cluster. It is focused on managing the life cycle of containers.
 * Enterprises that need to deploy and manage hundreds or thousands of Linux containers and hosts can benefit from container orchestration.
   
-#### Container Orchestration is used to automate the following tasks:
+### Container Orchestration is used to automate the following tasks:
 1. Configuring and scheduling of containers.
 2. Provisioning and deployment of containers.
 3. Redundancy and availability of containers (Desired Vs Current state).
@@ -21,7 +21,7 @@ Docker Swarm:
 * It also fixes any future deviation from the desired state.
 * Docker CLI manage creation of Swarm, deploy application service to swarm and managed swarm behaviour.
 
-### Docker Swarm(DS) Vs Kubernetes(K8S)
+## Docker Swarm(DS) Vs Kubernetes(K8S)
 
 * **Installtion & Cluster Configuration:**
 ```
@@ -61,7 +61,7 @@ DS : Third party tools like ELK should be used for logging and monitoring.
 
 **Kubernetes is an open-source container orchestration platform that automates the deployment, scaling, and management of containerized applications. It consists of several core components that work together to ensure the seamless operation of applications within a Kubernetes cluster. Let's explore these core components:**
 
-#### Master Node:
+### Master Node:
 The Master Node is the control plane of the Kubernetes cluster. It manages and oversees all cluster operations, making decisions about the state of the system. The components running on the master node include:
 
 * API Server:
@@ -76,7 +76,7 @@ The Controller Manager includes several controllers that monitor the state of th
 * etcd:
 etcd is a distributed key-value store that stores the cluster's configuration data and state. It is used to store and retrieve information about all resources and objects in the cluster, ensuring data consistency and reliability.
 
-#### Worker Node:
+### Worker Node:
 Worker nodes are the machines where the actual application containers run. These nodes are responsible for hosting, executing, and managing the containers. The components running on worker nodes include:
 
 * Kubelet:
@@ -88,22 +88,69 @@ Kubernetes supports various container runtimes like Docker, containerd, and othe
 * Kube-proxy:
 Kube-proxy is responsible for network routing and load balancing for services running across the cluster. It enables communication between different pods and external services.
 
-#### Networking:
+### Networking:
 Kubernetes requires a robust networking solution to enable communication between pods and services running on different nodes. Various container networking solutions can be used with Kubernetes, like Calico, Flannel, Weave, etc. These solutions provide virtual networks and IP addressing to the pods and ensure connectivity across the cluster.
 
-#### Storage:
+### Storage:
 Kubernetes supports different types of storage solutions to provide persistent storage to applications. These include local storage, network-attached storage (NAS), and cloud storage providers. Persistent Volumes (PVs) and Persistent Volume Claims (PVCs) are used to manage storage resources in Kubernetes.
 
-#### Add-ons:
+### Add-ons:
 Kubernetes also offers additional components that can be optionally added to the cluster to enhance its capabilities. Some common add-ons include:
 
-#### Dashboard: 
+### Dashboard: 
 A web-based graphical user interface (GUI) for visualizing and managing the cluster resources.
-#### Heapster/Metrics Server: 
+### Heapster/Metrics Server: 
 Used for cluster monitoring and gathering resource usage metrics.
-#### Ingress Controller: 
+### Ingress Controller: 
 Manages external access to services within the cluster.
-#### DNS Add-on: 
+### DNS Add-on: 
 Provides DNS-based service discovery for pods.
 
 *These core components work in harmony to create a scalable, resilient, and manageable Kubernetes cluster capable of running containerized applications efficiently.*
+
+
+## Pods
+* Basic scheduling unit in kubernetes. Pods are often ephemeral.
+* Kubernetes doesn't run containers directly, Instead it wraps one or more containers into a higher level structure called a pod.
+* It is also smallest deployable unit that can be created, schedule and managed on a kubernetes cluster.
+* Each pod is assigned a **unique IP address** within the cluster.
+* Pods can hold ***multiple containers*** as well, but you should limit yourself when possible. Beacuse pods are scaled up and down as a unit, all containers in a pod must scale togather, regardless of their individual needs. This leads wasted resource.
+
+* a port can have one more tightly related containers that we always run togather on the same worker node and in the same linux namespace. 
+* Each pod is like a separate logical mechine with its own IP, hostname, processes and so on, Running a single application, It is just a sandbox to run container in.
+* All the container is a pod will apper to be running on the same logical machine, whereas containers in the other pods, even if they are running on the same worker node, will appear to be running on a different one. 
+
+* Any container in the same pod will share this same storage volumes and network resources and communicating using localhost.
+*  Kubernetes uses **YAML** to describe the desired state of the containers in a pod. This is also called a *pod spec*. These objects are passed to the kubelet to the API Server. 
+* Pods are the unit of replication in Kubernetes. If your application become too poplar and a single pod instance can't carry the load. kubernetes can be configured to deploy new replicas of your pod to the cluster as necessary.
+
+
+### Lifecycle of a pod
+* Through its lifecycle, a Pod can attain following states starting from **Pending** to **Running**, 
+* A pod's status can be known from *phase* field.
+* **Pendding:** the pod accepted by the kubernetes system but it container(s) is/are not created yet. This includes time a pod spends waiting to be scheduled as well as the time spent downloading container images over the network. 
+* **Running:** The pod scheduled on a node and all its containers are created and at-least one container is in running state.
+* **Succeeded:** All containers in the pod have exited with status 0 and will not be restarted. 
+* **Failed:** All containers of the pod have exited and at least one container has reached a non zero status.
+* **CrashLoopBackoff:** The container fails to start and is tried agin and again.
+* **Unknown:** For some reason the state of the pod could not be obtained. the phase typically occurs due to an error in communicating with the node where the pod should be running. 
+
+```
+kubectl get po <pod name> -o yaml | grep phase
+```
+### Lifecycle of a Container
+* Kubernetes also tracks the state of each container inside a pod. 
+* Once the scheduler assign a pod to a node, the kubelet start creating containers for that pod using container runtime. 
+* You can also use `kubectl describe pod name_of_pod` to check the state of the containers. 
+* There are three possible container states. 
+* **Waiting:** while stilling pulling the container image from a Container Registry, or applying secrets
+* **Running:** when container is running without any issues.
+* **Terminated** when container ran to completion or failed for some reason. use `kubectl describe` to see the reason, an exit code, and the start and finish time of the containers period of execution.
+
+### Container Restart Policy
+* The restart policy applies to all containers in the pod.
+* The possible values **Always** **OnFailure** and **Never**. 
+* The default value is **Always** 
+* Mention the restart policies in podspec
+* When container in a pod exit, The Kubelet restart them with an exponential backoff delay *10 seconds 20 seconds 40 seconds* That is capped at five minutes.
+* Once a container has executed for 10 minutes without any problems. The Kubelet reset the restart backoff timer for the container.
