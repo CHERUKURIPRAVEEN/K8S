@@ -1,4 +1,4 @@
-![logo](../Images/Kubernetes-logo.png)
+![logo](Images/Kubernetes-logo.png)
 
 * To know the Cluster Info
 ```
@@ -114,4 +114,11 @@ kubectl cp index.html ngnix:/usr/share/nginx/html/index.html
 * From pod to local
 ```
 kubectl cp ngnix:/usr/share/nginx/html/index.html ./index.html
+```
+#### Temp Pods
+```
+kubectl run test-pod --images=alpine --rm -it
+kubectl run test-pod --rm -i --tty --image=ubuntu --it
+kubectl run curl --image=curlimages/curl -rm --restart=Never -- `command`
+kubectl run nginx --image=nginx --port=80
 ```
