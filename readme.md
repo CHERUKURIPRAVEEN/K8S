@@ -154,3 +154,10 @@ kubectl get po <pod name> -o yaml | grep phase
 * Mention the restart policies in podspec
 * When container in a pod exit, The Kubelet restart them with an exponential backoff delay *10 seconds 20 seconds 40 seconds* That is capped at five minutes.
 * Once a container has executed for 10 minutes without any problems. The Kubelet reset the restart backoff timer for the container.
+
+### Run a temp pod
+* you can also fire up an intractive Pod within a Kubernetes cluster that is deleted once you exit the intractive session.
+* `--rm` - Ensure that the pod is deleted when you exit from the intractive shell.
+* `-i/--tty` - The combination od these two are what allows us to attach to an intractive session.
+* `--` - Delimits the end of the kubectl run option from the positional arg [bash]
+* `bash` - Overwrite the container's CMD. In this case, we want to lunch bash as our container's command.  
