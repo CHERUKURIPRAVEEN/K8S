@@ -231,5 +231,47 @@ spec:
     image: myregistry/myimage:latest
     imagePullPolicy: Always
 ```
-
 ### Ephemeral containers
+
+### ReplicaSet
+A ReplicaSet is a component in Kubernetes that ensures a specified number of replicas (pods) of a given application are running at any given time. It is responsible for maintaining the desired state of the application by ensuring that the correct number of pods are running, even if some of them fail or are terminated.
+
+**Key Features of ReplicaSet
+1.Pod Replication:
+Ensures a specified number of identical pods are running at all times.
+Automatically replaces failed or terminated pods to maintain the desired number of replicas.
+
+2.Selectors:
+Uses both equality-based and set-based selectors to identify the pods it should manage.
+This allows for more flexible and powerful pod selection compared to its predecessor, the ReplicationController.
+
+3.Self-Healing:
+Continuously monitors the pods and ensures that the correct number of replicas are running.
+If a pod goes down, the ReplicaSet will create a new one to replace it.
+
+4.Declarative Configuration:
+Defined in a YAML or JSON configuration file where the desired state is specified.
+Kubernetes continuously works to maintain this desired state.
+
+* Example YAML Configuration for a ReplicaSet
+```yml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: my-replicaset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-container
+        image: my-image
+```
+* Integration with Deployments
+While ReplicaSets can be created and managed directly, they are typically used as part of a Deployment. A Deployment provides additional features, such as rolling updates, rollbacks, and versioning, by managing one or more ReplicaSets. When you create a Deployment, it automatically creates and manages ReplicaSets on your behalf.
