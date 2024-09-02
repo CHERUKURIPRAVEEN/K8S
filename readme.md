@@ -297,7 +297,7 @@ spec:
       port: 80
       targetPort: 8080
 ```
-* **Key Point**: Not accessible from outside the cluster.
+> Key Point: Not accessible from outside the cluster.
 
 02. **NodePort**
 
@@ -318,7 +318,7 @@ spec:
       targetPort: 8080
       nodePort: 30007
 ```
-* **Key Point**: Makes the Service accessible from outside the cluster on a specific port of each node.
+> Key Point: Makes the Service accessible from outside the cluster on a specific port of each node.
 
 03. **LoadBalancer**
 
@@ -339,7 +339,7 @@ spec:
       port: 80
       targetPort: 8080
 ```
-* **Key Point**: Automatically creates an external load balancer and provides a public IP to access the Service.
+> Key Point: Automatically creates an external load balancer and provides a public IP to access the Service.
 
 04. **ExternalName**
 
@@ -355,7 +355,7 @@ spec:
   type: ExternalName
   externalName: my.database.example.com
 ```
-* **Key Point**: Does not expose Pods; instead, it provides a DNS alias for external services.
+> Key Point: Does not expose Pods; instead, it provides a DNS alias for external services.
 
 05. **Headless Service**
 
@@ -375,7 +375,7 @@ spec:
     - port: 80
       targetPort: 8080
 ```
-* **Key Point**: Does not load-balance; instead, each Pod can be directly addressed.
+> Key Point**: Does not load-balance; instead, each Pod can be directly addressed.
 
 **Summary**
 * *ClusterIP*: Internal-only access, default Service type.
