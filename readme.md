@@ -385,3 +385,5 @@ spec:
 * *Headless*: No cluster IP, returns individual Pod IPs for direct access.
 
 Each Service type is designed to fit specific use cases, whether you need internal communication within the cluster or external access to your applications.
+
+**Thanks**
